@@ -4,7 +4,6 @@ import datetime
 
 
 DB_URI = os.environ.get("Database_string")
-# DB_URI = "mongodb+srv://stack:stackCoredevs.21@cluster0.qsmsc.mongodb.net/stack"
 connect(host=DB_URI)
 try:
     class Records(Document):
