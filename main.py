@@ -7,14 +7,14 @@ import threading
 def main():
     links = search_for_link()["data"]
     links_length = len(links)
-    print(links_length)
+    # print(links_length)
     if links_length == 0:
         print("links not available")
     else:
         limited_links = 2000
         link_list_number = links_length / limited_links
         link_list_number = int(math.ceil(link_list_number))
-        print(link_list_number)
+        # print(link_list_number)
 
         list_of_list = multi_list(link_list_number)["data"]
         # print(list_of_list)
