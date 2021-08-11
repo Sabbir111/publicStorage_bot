@@ -96,7 +96,7 @@ def check_items(driver, _id):
     try:
         item_size = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.XPATH,
-                                            """//div[@class="col-9"]/div/div/div/div/div/h4[contains(text(),"Medium 10' x 10'")]"""))).text
+                                            """//h4[contains(text(),"Medium 10' x 10'")]"""))).text
         # print(item_size)
     except:
         print("No item found")
@@ -104,14 +104,14 @@ def check_items(driver, _id):
     if item_size == "Medium 10' x 10'":
 
         try:
-            path = """//div[@class="col-9"]/div/div/div/div/div/h4[contains(text(),"Medium 10' x 10'")]/following-sibling::ul//child::li//child::span[contains(text(),"Inside unit")]//parent::li/preceding-sibling::li//child::span[contains(text(),"Climate Controlled")]"""
+            path = """//h4[contains(text(),"Medium 10' x 10'")]/following-sibling::ul//child::li//child::span[contains(text(),"Inside unit")]//parent::li/preceding-sibling::li//child::span[contains(text(),"Climate Controlled")]"""
             WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located((By.XPATH, path)))
 
             result = "inside_unit_climate_control"
         except:
             try:
-                iu_path = """//div[@class="col-9"]/div/div/div/div/div/h4[contains(text(),"Medium 10' x 10'")]/following-sibling::ul//child::li//child::span[contains(text(),"Inside unit")]"""
+                iu_path = """//h4[contains(text(),"Medium 10' x 10'")]/following-sibling::ul//child::li//child::span[contains(text(),"Inside unit")]"""
                 WebDriverWait(driver, 5).until(
                     EC.presence_of_element_located((By.XPATH, iu_path)))
 
@@ -119,7 +119,7 @@ def check_items(driver, _id):
 
             except:
                 try:
-                    path = """(//div[@class="col-9"]/div/div/div/div/div/h4[contains(text(),"Medium 10' x 10'")]/following-sibling::ul//li//child::span[contains(text(),"Climate Controlled")])[1]"""
+                    path = """(//h4[contains(text(),"Medium 10' x 10'")]/following-sibling::ul//li//child::span[contains(text(),"Climate Controlled")])[1]"""
 
                     WebDriverWait(driver, 5).until(
                         EC.presence_of_element_located((By.XPATH, path)))
@@ -127,14 +127,14 @@ def check_items(driver, _id):
                 except:
                     WebDriverWait(driver, 5).until(
                         EC.presence_of_element_located((By.XPATH,
-                                                        """(//div[@class="col-9"]/div/div/div/div/div/h4[contains(text(),"Medium 10' x 10'")])[1]""")))
+                                                        """(//h4[contains(text(),"Medium 10' x 10'")])[1]""")))
 
                     result = "outside_unit"
         size = item_size.replace("Medium ", "")
         print("size: ", size)
 
         if result == "inside_unit_climate_control":
-            price_path = """(//div[@class="col-9"]/div/div/div/div/div/h4[contains(text(),"Medium 10' x 10'")]/following-sibling::ul//child::li//child::span[contains(text(),"Inside unit")]//parent::li/preceding-sibling::li//child::span[contains(text(),"Climate Controlled")]//parent::li//parent::ul//parent::div/following-sibling::div/div/div/span/span)[1]"""
+            price_path = """(//h4[contains(text(),"Medium 10' x 10'")]/following-sibling::ul//child::li//child::span[contains(text(),"Inside unit")]//parent::li/preceding-sibling::li//child::span[contains(text(),"Climate Controlled")]//parent::li//parent::ul//parent::div/following-sibling::div/div/div/span/span)[1]"""
             price = WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located((By.XPATH, price_path))).text
             print("climate_control: ", True)
@@ -142,21 +142,21 @@ def check_items(driver, _id):
             push_records(_id, size, True, float(price))
         elif result == "inside_unit":
 
-            price_path = """(//div[@class="col-9"]/div/div/div/div/div/h4[contains(text(),"Medium 10' x 10'")]/following-sibling::ul//child::li//child::span[contains(text(),"Inside unit")]//parent::li//parent::li//parent::ul//parent::div/following-sibling::div/div/div/span/span)[1]"""
+            price_path = """(//h4[contains(text(),"Medium 10' x 10'")]/following-sibling::ul//child::li//child::span[contains(text(),"Inside unit")]//parent::li//parent::li//parent::ul//parent::div/following-sibling::div/div/div/span/span)[1]"""
             price = WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located((By.XPATH, price_path))).text
             print("climate_control: ", False)
             print("price", price)
             push_records(_id, size, False, float(price))
         elif result == "outside_unit_climate_control":
-            price_path = """(//div[@class="col-9"]/div/div/div/div/div/h4[contains(text(),"Medium 10' x 10'")]/following-sibling::ul//li//child::span[contains(text(),"Climate Controlled")]//parent::li//parent::ul//parent::div/following-sibling::div/div/div/span/span)[1]"""
+            price_path = """(//h4[contains(text(),"Medium 10' x 10'")]/following-sibling::ul//li//child::span[contains(text(),"Climate Controlled")]//parent::li//parent::ul//parent::div/following-sibling::div/div/div/span/span)[1]"""
             price = WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located((By.XPATH, price_path))).text
             print("climate_control: ", True)
             print("price: ", price)
             push_records(_id, size, True, float(price))
         else:
-            price_path = """(//div[@class="col-9"]/div/div/div/div/div/h4[contains(text(),"Medium 10' x 10'")]//parent::div/following-sibling::div/div/div/span/span)[1]"""
+            price_path = """(//h4[contains(text(),"Medium 10' x 10'")]//parent::div/following-sibling::div/div/div/span/span)[1]"""
             price = WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located((By.XPATH, price_path))).text
             print("climate_control: ",False)

@@ -32,7 +32,8 @@ def schedule():
     while True:
         main()
         print("sleep for 24 hours.")
-        sleep(84600)
+        sleep(86400)
 
 
 schedule()
+
