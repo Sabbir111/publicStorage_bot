@@ -21,7 +21,6 @@ def main():
         if not list_of_list:
             print("no links available")
         else:
-
             for i in range(link_list_number):
                 links_List = list_of_list[0]
                 browserThread = threading.Thread(target=runBot, args=(links_List,))
@@ -33,7 +32,7 @@ def schedule():
     while True:
         main()
         print("sleep for 24 hours.")
-        sleep(300)
+        sleep(84600)
 
 
 schedule()
